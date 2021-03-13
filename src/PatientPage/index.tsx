@@ -27,10 +27,20 @@ const PatientPage: React.FC = () => {
       void fetchPatient();
     }
   }, [dispatch]);
-
+  const displayGenderIcon = () => {
+    if(patient?.gender === 'male') {
+      return <Icon name='mars'/>;
+    } else if (patient?.gender === 'female') {
+      return <Icon name='venus'/>;
+    } else if (patient?.gender === 'other') {
+      return <Icon name='neuter'/>;
+    } else {
+      return null;
+    }
+  };
   return (
     <>
-      <h2>{patient?.name}<Icon name='mars' /></h2><p>ssn: {patient?.ssn} </p>
+      <h2>{patient?.name}{displayGenderIcon()}</h2><p>ssn: {patient?.ssn} </p>
       <p>
         occupation: {patient?.occupation}
       </p>
