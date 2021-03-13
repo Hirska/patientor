@@ -8,6 +8,8 @@ import { Patient } from '../types';
 import { Icon } from "semantic-ui-react";
 import { setPatient } from '../state/reducer';
 
+import EntryComponent from './Entry';
+
 const PatientPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [{ patient }, dispatch] = useStateValue();
@@ -28,12 +30,12 @@ const PatientPage: React.FC = () => {
     }
   }, [dispatch]);
   const displayGenderIcon = () => {
-    if(patient?.gender === 'male') {
-      return <Icon name='mars'/>;
+    if (patient?.gender === 'male') {
+      return <Icon name='mars' />;
     } else if (patient?.gender === 'female') {
-      return <Icon name='venus'/>;
+      return <Icon name='venus' />;
     } else if (patient?.gender === 'other') {
-      return <Icon name='neuter'/>;
+      return <Icon name='neuter' />;
     } else {
       return null;
     }
@@ -44,6 +46,8 @@ const PatientPage: React.FC = () => {
       <p>
         occupation: {patient?.occupation}
       </p>
+      <h3>entries</h3>
+      {patient?.entries?.map(entry => <EntryComponent key={entry.id} entry={entry} />)}
     </>
   );
 };
