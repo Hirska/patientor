@@ -8,8 +8,7 @@ import { Patient } from '../types';
 import { Icon } from "semantic-ui-react";
 import { setPatient } from '../state/reducer';
 
-import EntryComponent from './Entry';
-
+import EntryDetails from './EntryDetails';
 const PatientPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [{ patient }, dispatch] = useStateValue();
@@ -47,7 +46,7 @@ const PatientPage: React.FC = () => {
         occupation: {patient?.occupation}
       </p>
       <h3>entries</h3>
-      {patient?.entries?.map(entry => <EntryComponent key={entry.id} entry={entry} />)}
+      {patient?.entries?.map(entry => <EntryDetails key={entry.id} entry={entry} />)}
     </>
   );
 };
