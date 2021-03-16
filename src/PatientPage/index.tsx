@@ -19,18 +19,16 @@ const PatientPage: React.FC = () => {
   const [error, setError] = useState<string | undefined>();
 
   const submitNewEntry = async (values: HospitalFormValues) => {
-    console.log(values);
     try {
       const { data: newPatient } = await axios.post<Patient>(
         `${apiBaseUrl}/patients/${id}/entries`,
         values
       );
-      console.log(newPatient);
       dispatch(setPatient(newPatient));
       closeModal();
     } catch (e) {
       console.error(e.response?.data || 'Unknown Error');
-      setError(e.response?.data?.error || 'Unknown error');
+      setError(e.response?.data || 'Unknown error');
     }
   };
 
