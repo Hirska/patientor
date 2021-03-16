@@ -14,9 +14,8 @@ const EntryDetails: React.FC<{ entry: Entry }> = ({ entry }) => {
       case 'HealthCheck':
         return <HealthCheckEntry entry={entry} />;
       default:
-        assertNever(entry);
+        return assertNever(entry);
     }
-    return null;
 };
 
 export default EntryDetails;

@@ -1,6 +1,6 @@
 import React from "react";
 import { ErrorMessage, Field, FieldProps, FormikProps } from "formik";
-import { Dropdown, DropdownProps, Form } from "semantic-ui-react";
+import { Dropdown, DropdownProps, Form, TextArea as Area } from "semantic-ui-react";
 import { Diagnosis, Gender } from "../types";
 
 // structure of a single option
@@ -46,6 +46,20 @@ export const TextField: React.FC<TextProps> = ({
   <Form.Field>
     <label>{label}</label>
     <Field placeholder={placeholder} {...field} />
+    <div style={{ color:'red' }}>
+      <ErrorMessage name={field.name} />
+    </div>
+  </Form.Field>
+);
+
+export const TextArea: React.FC<TextProps> = ({
+  field,
+  label,
+  placeholder
+}) => (
+  <Form.Field>
+    <label>{label}</label>
+    <Field as={Area} placeholder={placeholder} {...field} />
     <div style={{ color:'red' }}>
       <ErrorMessage name={field.name} />
     </div>
